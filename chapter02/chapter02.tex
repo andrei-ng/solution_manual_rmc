@@ -1,0 +1,28 @@
+\chapter[Chapter 2]{Solutions}
+
+2.1
+
+It should be clear that the dot product of two vectors is independent of the reference frame used since the dot product can also be computed from $v_1 \cdot v_2 = |v_1| |v_2| \cos\theta$, i.e., it depends only on the magnitude of the two vectors and the angle between them.
+\\~
+
+
+Assume $v_1$, $v_2\space$ are vectors in $\R^3$. Introduce the notation $a=v_1$ and $b=v_2$.
+
+
+Let $a^1$ and $b^1$ be the representation of the two vectors in frame $o_1x_1y_1z_1$ in $\R^3$.
+Let $a^2$ and $b^2$ be the representation of the two vectors in a second frame $o_2x_2y_2z_2$ in $\R^3$, with the same origin as the first frame.
+
+Let $R^1_2$ be the rotation matrix relating the two frames. Then we have 
+\begin{align*} 
+a^1 = R^1_2 a^2 \\ 
+b^1 = R^1_2 b^2
+\end{align*}
+
+Writing the dot product equation we have, 
+\begin{align*} 
+a^1 \cdot b^1 &= (a^1)^T b^1 = (R^1_2 a^2)^T  R^1_2 b^2 = (a^2)^T (R^1_2)^T  R^1_2 b^2 \\
+&= (a^2)^T b^2 = a^2 \cdot b^2 
+\end{align*}
+where we used the fact that $(R^1_2)^T  R^1_2 =I$
+
+Hence, the dot product is independent from the choice of the reference frames.
