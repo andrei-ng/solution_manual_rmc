@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -e
+
+imageName=
+# Check args
+
+if [ "$#" -lt 1 ]; then
+  echo "usage: ./run.sh <image-name>"
+  echo "Using default image 'codookie/ubuntu-18.04-tex-opengl-full'"
+  imageName="codookie/ubuntu-18.04-tex-opengl-full"
+else
+  imageName=$1 && shift 1
+fi
+
+
+
+THIS_HOST=`hostname`
+docker_run_cmd="docker run --rm"
+
+# Run the container with NVIDIA Graphics acceleration, shared network interface, shared hostname, shared X11
+$(echo $docker_run_cmd) \
+    --net=host \
+    --ipc=host \
+    --privileged \
+    -e DISPLAY=$DISPLAY \
+    -e "QT_X11_NO_MITSHM=1" \
+    -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+    -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority \
+    -v $(pwd)/../texfiles:/home/docker/texfiles \
+    -it $imageName "$@"
+
