@@ -29,7 +29,7 @@ Hence, the dot product is independent from the choice of the reference frames.
 
 \subsection*{2-2}
 
-The length of a vector $v$ is given by the 2-norm, $\|v\|_2 = \sqrt{v^Tv}$.\\~
+The length of a vector $v\in R^{n \times 1}$ is given by the 2-norm, $\|v\|_2 = \sqrt{v^Tv}$.\\~
 
 Using the above, we have $\|Rv\|^2_2=v^TR^TRv=v^Tv=\|v\|_2^2$, where it was used that $R^TR=I$ for an orthogonal / rotation matrix.
 
@@ -37,4 +37,120 @@ Using the above, we have $\|Rv\|^2_2=v^TR^TRv=v^Tv=\|v\|_2^2$, where it was used
 
 By denoting $d=p_1-p_2$, the relation becomes $\|d\|_2=\|Rd\|_2$, which is the same as the one in the exercise \textbf{2-2}
 
+\subsection*{2-4}
 
+Consider the 3D space. Let matrix $R\in \R^{3 \times 3}$ be represented by the column vectors
+\begin{align*}
+R = [ c_1 | c_2 | c_3 ]
+\end{align*} 
+where $c_i \space \in \R^{3 \times 1}, \space i=1,3$.
+Then
+\begin{align*}
+R^T R = \left[\begin{array}{c} 
+ c_1^T \\ 
+ c_2^T \\ 
+ c_3^T 
+ \end{array} \right] \left[ c_1 | c_2 | c_3 \right] = \left[\begin{array}{ccc} 
+ c_1^Tc_1 & c_1^Tc_2 & c_1^Tc_3 \\  
+ c_2^Tc_1 & c_2^Tc_2 & c_2^Tc_3 \\ 
+ c_3^Tc_1 & c_3^Tc_2 & c_3^Tc_3 \\ 
+ \end{array}\right]
+\end{align*}
+In the case of an rotation matrix $R$, $R^TR=I$ implies 
+\begin{align*}
+ c_1^Tc_1 = 1, \quad c_1^Tc_2 = 0, \quad c_1^Tc_3 = 0 \\ 
+  c_2^Tc_2 = 1, \quad c_2^Tc_1 = 0, \quad c_2^Tc_3 = 0 \\
+   c_3^Tc_3 = 1, \quad c_3^Tc_1 = 0, \quad c_3^Tc_2 = 0
+\end{align*}
+which are exactly the relations that define the vectors $c_1$, $c_2$ and $c_3$ as being of unit length and mutually orthogonal. Note that the above derivation holds for any $R\in \R^{n\times n}$
+
+\subsection*{2-5}
+For any square matrix $A,B\in \R^{n \times n}$, the following hold:
+\begin{align*}
+&\det A = \det A^T \\
+&\det(AB) = \det(A)\det(B)
+\end{align*}
+Therefore, for rotation matrices,  $R^T R = I $ implies
+\begin{align*}
+&\det R^TR= \det R^T \det R = (\det R)^2 = 1 \\
+&\Rightarrow \det R = \pm 1
+\end{align*} 
+
+Let $R$ be given by
+\begin{align*}
+R &= [ c_1 | c_2 | c_3 ] \\
+& = \left[\begin{array}{ccc} 
+c_{11} & c_{12} & c_{13} \\  
+c_{21} & c_{22} & c_{23} \\  
+c_{31} & c_{32} & c_{33} \\   
+\end{array}\right]
+\end{align*}
+
+Computing the determinant by selecting the last row gives
+\begin{align*}
+\det R &= c_{13} (c_{21}c_{32}-c_{22}c_{31}) \\
+ & - c_{23} (c_{11}c_{32}-c_{12}c_{31}) \\
+ & + c_{33} (c_{11}c_{22}-c_{21}c_{12}) \\
+\end{align*}
+
+As per definition, a right-handed coordinate frame defines the third coordinate axis to be given by $c_3 = c_1 \times c_2$. By definition of the cross-product, the components of $c_3$ along the $<i,j,k>$ unit vectors of the coordinate system are give by 
+\begin{align}
+&c_{13} = c_i := c_{21} c_{32} - c_{31} c_{22} \nonumber \\
+&c_{23} = c_j := c_{31}c_{12} - c_{11}c_{32} \label{eq:cross_product_components} \\
+&c_{33} = c_k := c_{11}c_{22} - c_{21}c_{12} \nonumber
+\end{align} 
+
+Using \eqref{eq:cross_product_components} in the expression of the determinant, one gets 
+\begin{align*}
+\det R &= c_{13}  c_{13} \\
+& - c_{23} (-c_{23}) \\
+& + c_{33} (c_{33}) \\
+& = c_{13}^2 +c_{23}^2 + c_{33}^2  = +1
+\end{align*}
+
+\subsection*{2-6}
+
+Straightforward to show
+\begin{equation*}
+R_{z,0} = I \quad (2.3)
+\end{equation*} 
+Simply replace $\theta = 0$ in equation \textbf{(2.2)} of the textbook.
+
+To show
+\begin{equation*}
+R_{z,\theta} R_{z,\phi}= R_{z,\theta+\phi} \quad (2.4)
+\end{equation*}
+Perform the matrix multiplication to get
+\begin{align*} 
+R_{z,\theta} R_{z,\phi} &= \left[\begin{array}{ccc} 
+(\cos\theta \cos \phi - \sin\theta \sin \phi) & (-\cos\theta \sin\phi - \sin\theta \cos\phi) & 0 \\  
+(\sin\theta \cos\phi +\cos\theta \sin\phi) & (\cos\theta \cos \phi - \sin\theta \sin \phi) & 0 \\ 
+0 & 0 & 1 \\   
+\end{array}\right] \\
+&=\left[\begin{array}{ccc} 
+\cos(\theta + \phi)& -\sin(\theta + \phi) & 0 \\  
+\sin(\theta + \phi) & \cos(\theta + \phi) & 0 \\ 
+0 & 0 & 1 \\   
+\end{array}\right] = R_{z,\theta+\phi}
+\end{align*}
+
+To show
+\begin{equation*}
+R_{z,\theta}^{-1} = R_{z,-\theta} \quad (2.5)
+\end{equation*}
+Either:
+\begin{itemize}
+	\item calculate the inverse of the matrix in equation \textbf{(2.2)} of the textbook and note that is exactly $R_{z,-\theta}$.
+	\item use the fact that $R^{-1}=R^T$ for any rotation matrix and simply note that
+	\begin{equation*}
+	R_{z,\theta}^{-1} = R_{z,\theta}^{T} = R_{z,-\theta}
+	\end{equation*}
+	\item use (2.3) and (2.4) from the textbook to write
+	\begin{align*}
+	R_{z,\theta} R_{z,-\theta} &= R_{z,0} = I \\
+	&\Rightarrow R_{z,-\theta} = R_{z,\theta}^{-1}
+	\end{align*}
+\end{itemize}
+
+\subsection*{2-7}
+\textbf{TODO}
