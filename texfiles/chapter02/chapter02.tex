@@ -153,4 +153,164 @@ Either:
 \end{itemize}
 
 \subsection*{2-7}
-\textbf{TODO}
+$SO(n)$ is the group of orthogonal matrices for which 
+\begin{align*}
+R^T=R^{-1} \\
+\det R=1
+\end{align*}
+
+\paragraph{Property 1:}  Let $A_1\in \R^{n\times n}$ and $A_2\in \R^{n\times n}$ be two orthogonal matrices for which the above to relations hold. Then, we have
+\begin{align*}
+(A_1*A_2)*(A_1*A_2)^T &= A_1*A_2 * A_2^T*A_1^T = A_1*A_2 * A_2^{-1}*A_1^{-1}= I
+\end{align*}
+Therefore 
+\begin{align*}
+(A_1*A_2)^T = (A_1*A_2)^{-1} 
+\end{align*}
+It is straightforward to show that $\det(A_1*A_2) = 1$.\\~\\
+Hence $A_1*A_2 \in \space SO(n)$
+\paragraph{Property 2:}  The relations holds in the more general case for the product of any three matrices $A_1\in \R^{n\times n}$, $A_2\in \R^{n\times n}$ and $A_3\in \R^{n\times n}$, not necessarily orthogonal.
+\paragraph{Property 3:}  Let $A\in SO(n)$. TO show that there exists $\bar{A}\in SO(n)$ such that
+\begin{align*}
+A*\bar{A}_1 = \bar{A}_1*A = I 
+\end{align*}
+we simply note that $\bar{A}_1 = A^T$ satisfies the equation and that $A^T$ is also a matrix in $SO(n)$, while $I$ is the identity matrix of $\R^{n \times n}$.
+
+\subsection*{2-8}
+$\R_{x,\theta}$ represents the rotation about $x$ axis with angle $\theta$. Let the unit vectors for the initial and final rotated frame be denoted by $x_0,y_0,z_0$ and $x_1,y_1,z_1$ respectively, then by evaluating the direction cosines of the unit vectors, one gets:
+\begin{align*}
+	x_1 \cdot x_0 &= 1 \\
+	x_1 \cdot y_0 &= 0 \\ 
+	x_1 \cdot z_0 &= 0
+\end{align*}
+as the rotation is about the $x$ axis, and
+\begin{align*}
+y_1 \cdot x_0 &= 0 \\
+y_1 \cdot y_0 &= \cos\theta \\
+y_1 \cdot z_0 &= \cos(\frac{\pi}{2}-\theta) = \sin\theta
+\end{align*}
+\begin{align*}
+z_1 \cdot x_0 &= 0 \\
+z_1 \cdot y_0 &= \cos(\frac{\pi}{2}+\theta) = -\sin\theta \\
+z_1 \cdot z_0 &=  \cos\theta; 
+\end{align*}
+which when put in matrix form results in the expression of equation \textbf{(2.6)}
+\begin{align*}
+\R_{x,\theta}=\left[\begin{array}{ccc} 
+1 & 0 & 0 \\
+0 & \cos\theta & -\sin\theta \\  
+0 & \sin\theta &  \cos\theta    
+\end{array}\right]
+\end{align*}
+
+Similarly to determine the expression of equation \textbf{(2.7)}, i.e., the case of a rotation about $y$ axis, the non-zero entries of the matrix are give by
+\begin{align*}
+x_1 \cdot x_0 &= \cos\theta \\
+x_1 \cdot z_0 &= \cos(\frac{\pi}{2}+\theta) = -\sin\theta \\~\\
+y_1 \cdot y_0 &= 1 \\~\\ 
+z_1 \cdot x_0 &=  \cos(\frac{\pi}{2}-\theta) = \sin\theta \\
+z_1 \cdot z_0 &=  \cos\theta; 
+\end{align*}
+which gives
+\begin{align*}
+\R_{y,\theta}=\left[\begin{array}{ccc} 
+\cos\theta & 0 & \sin\theta \\
+ 0 & 1 & 0 \\  
+-\sin\theta & 0 &  \cos\theta    
+\end{array}\right]
+\end{align*}
+
+\subsection*{2-9}
+Let 
+\begin{align*}
+A=\left[\begin{array}{cc} 
+a & b \\
+c & d 
+\end{array}\right] \in \space SO(2)
+\end{align*}
+The inverse, $A^{-1}$ is given by
+\begin{align*}
+A^{-1}= \left[\begin{array}{cc} 
+d & -b \\
+-c & a 
+\end{array}\right]
+\end{align*}
+Since $A^T=A^{-1}$ , then
+\begin{align*}
+\left[\begin{array}{cc} 
+d & -b \\
+-c & a 
+\end{array}\right] =  \left[\begin{array}{cc} 
+a & c \\
+b & d 
+\end{array}\right]
+\end{align*}
+then $d=a$ and $c=-b$. As a result $\det A = a^2 + b^2 = 1$. By selecting $\theta = \arctan (b/a)$, then we can choose $\cos\theta = a$ and $\sin\theta=b$, $\forall \theta \in [0,2\pi)]$.
+
+\subsection*{2-10}
+
+\begin{itemize}
+	\item rotation about current frame: post-multiply
+	\item rotation about fixed frame: pre-multiply
+\end{itemize}
+
+Solution: $R=R_{y,\psi}R_{x,\phi}R_{z,\theta}$
+
+\subsection*{2-11}
+\begin{itemize}
+	\item rotation about current frame: post-multiply
+	\item rotation about fixed frame: pre-multiply
+\end{itemize}
+
+Solution: $R=R_{z,\theta}R_{x,\phi}R_{x,\psi}$
+
+\subsection*{2-12}
+\begin{itemize}
+	\item rotation about current frame: post-multiply
+	\item rotation about fixed frame: pre-multiply
+\end{itemize}
+
+Solution: $R= R_{z,\alpha}R_{x,\phi}R_{z,\theta}R_{x,\psi}$
+
+\subsection*{2-13}
+
+\begin{itemize}
+	\item rotation about current frame: post-multiply
+	\item rotation about fixed frame: pre-multiply
+\end{itemize}
+
+Solution: $R= R_{z,\alpha}R_{z,\theta} R_{x,\phi}R_{x,\psi}$
+
+\subsection*{2-14}
+\begin{align*}
+R &= R_{y,\frac{\pi}{2}} R_{x,\frac{\pi}{2}}=\\ 
+&=\left[\begin{array}{ccc} 
+0 & 0 & 1 \\
+0 & 1 & 0 \\  
+-1 & 0 & 0    
+\end{array}\right]
+\left[\begin{array}{ccc} 
+1 & 0 & 0 \\
+0 & 0 & -1 \\  
+0 & 1 & 0    
+\end{array}\right]\\
+&=\left[\begin{array}{ccc} 
+0 & 1 & 0 \\
+0 & 0 & -1 \\  
+-1 & 0 & 0    
+\end{array}\right]
+\end{align*}
+
+TODO: sketch the final frame...
+
+\subsection*{2-15}
+
+\subsection*{2-16}
+
+\subsection*{2-17}
+
+\subsection*{2-18}
+
+\subsection*{2-19}
+
+\subsection*{2-20}
