@@ -12,7 +12,8 @@ else
   imageName=$1 && shift 1
 fi
 
-
+# Determine's this script's directory independent of calling location
+baseDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 THIS_HOST=`hostname`
 docker_run_cmd="docker run --rm"
@@ -26,6 +27,6 @@ $(echo $docker_run_cmd) \
     -e "QT_X11_NO_MITSHM=1" \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
     -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority \
-    -v $(pwd)/../texfiles:/home/docker/texfiles \
+    -v $baseDir/../texfiles:/home/docker/texfiles \
     -it $imageName "$@"
 
